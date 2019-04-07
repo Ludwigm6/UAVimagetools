@@ -3,7 +3,7 @@ Planing and analysing UAV data
 
 Parts of this repository should eventually be merged with the uavRmp and uavRst packages.
 
-![Fig. 1: Potential Flight area around the Points](/home/marvin/uav/UM2UAV/bb_demo.png)
+![Fig. 1: Potential Flight area around the Points](bb_demo.png)
 
 ToDo:
 
