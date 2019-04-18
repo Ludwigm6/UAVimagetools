@@ -21,8 +21,6 @@ minBB <- function(points, buffer = 20, epsg = 25832){
   xy <- points@coords
 
 
-  # take off point as sf
-  take_off <- st_sfc(st_point(take_off), crs = epsg)
 
   # call the Rotating Caliper Algorithm
   pts <- optimalBB(xy)
@@ -33,6 +31,8 @@ minBB <- function(points, buffer = 20, epsg = 25832){
   # square buffer
   pts_buffer <- st_buffer(sf_pts, dist = buffer, nQuadSegs = 40, endCapStyle = "FLAT",
             joinStyle = "MITRE", mitreLimit = Inf)
+
+  pts_buffer <- st_sfc(pts_buffer, crs = epsg)
 
   # return spatial object
   return(pts_buffer)
