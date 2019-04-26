@@ -1,4 +1,14 @@
-# create Level 0 structure
+#' Creates Level 0 structure
+#'
+#' @description creates directories for L0 image data
+#'
+#' @param pathL0 [string] A directory path
+#'
+#' @author Marvin Ludwig
+#'
+#' @export
+#'
+#'
 
 
 initL0 <- function(pathL0){

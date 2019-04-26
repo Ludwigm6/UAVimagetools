@@ -1,6 +1,6 @@
 #' Analyses raw image UAV data and returns a L0 report
 #'
-#' Reads the EXIF information and divides the images into noGPS, taxi and useable L0 images
+#' @description Reads the EXIF information and divides the images into noGPS, taxi and useable L0 images
 #'
 #' @param pathRAW [string] path to the raw images
 #' @param taxi_threshold [numeric] vector of length 2 with the lower and upper distance between two consecutive images
@@ -18,11 +18,13 @@
 #' └── trashcan
 #' ├── noGPS
 #' └── taxi
-#' Currently doesn't move any files
+#'Currently doesn't move any files
 #'
 #' @author Marvin Ludwig
 #'
+#' @export
 #'
+
 
 
 

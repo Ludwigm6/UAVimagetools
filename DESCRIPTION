@@ -3,8 +3,8 @@ Type: Package
 Title: Function Collection for UAV
 Version: 0.1.0
 Author: Marvin Ludwig
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Function which should eventually be merged with uavRmp
-License: What license is it under?
+Maintainer: Marvin Ludwig <marvin.ludwig@geo.uni-marburg.de>
+Description: Functions which should eventually be merged with uavRmp
+License: CC0
 Encoding: UTF-8
 LazyData: true

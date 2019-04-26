@@ -12,6 +12,7 @@
 #'
 #' @references http://dwoll.de/rexrepos/posts/diagBounding.html
 #'
+#' @export
 
 
 minBB <- function(points, buffer = 20, epsg = 25832){
