@@ -27,3 +27,6 @@ filterImages_gps <- function(pathRAW, pathL0){
 
 
 }
+
+
+

@@ -1,0 +1,7 @@
+SourceFile 
+Directory
+FileName
+DateTimeOriginal
+GPSLongitude
+GPSLatitude
+GPSAltitude

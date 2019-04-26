@@ -12,7 +12,8 @@ initL0 <- function(pathL0){
     dir.create(pathL0)
   }
 
-  dirs <- paste0(pathL0, c("images", "trashcan", "flightLog", "flightArea", "report"))
+  dirs <- paste0(pathL0, c("images", "trashcan", "flightLog", "flightArea", "imageReport",
+                           "trashcan/noGPS", "trashcan/taxi"))
   sapply(dirs, dir.create, showWarnings = FALSE)
 
 
