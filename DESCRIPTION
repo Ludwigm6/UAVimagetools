@@ -8,3 +8,4 @@ Description: Functions which should eventually be merged with uavRmp
 License: CC0
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1

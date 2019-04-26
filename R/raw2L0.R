@@ -2,22 +2,22 @@
 #'
 #' @description Reads the EXIF information and divides the images into noGPS, taxi and useable L0 images
 #'
-#' @param pathRAW [string] path to the raw images
-#' @param taxi_threshold [numeric] vector of length 2 with the lower and upper distance between two consecutive images
+#' @param pathRAW path to the raw images
+#' @param taxi_threshold vector of length 2 with the lower and upper distance between two consecutive images
 #'
 #' @return list of exif
 #'
-#' @details Creates a subfolder in pathRAW with the following structure:
-#' ├── flightArea
-#' ├── flightLog
-#' ├── imageReport
-#' │   ├── images_l0.csv
-#' │   ├── images_noGPS.csv
-#' │   └── images_taxi.csv
-#' ├── images
-#' └── trashcan
-#' ├── noGPS
-#' └── taxi
+#' @details Creates a subfolder in pathRAW with the following structure: \cr
+#' ├── flightArea \cr
+#' ├── flightLog \cr
+#' ├── imageReport \cr
+#' │   ├── images_l0.csv \cr
+#' │   ├── images_noGPS.csv \cr
+#' │   └── images_taxi.csv \cr
+#' ├── images \cr
+#' └── trashcan \cr
+#' ├── noGPS \cr
+#' └── taxi \cr
 #'Currently doesn't move any files
 #'
 #' @author Marvin Ludwig
