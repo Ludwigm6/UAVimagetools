@@ -7,18 +7,6 @@
 #'
 #' @return list of exif
 #'
-#' @details Creates a subfolder in pathRAW with the following structure: \cr
-#' ├── flightArea \cr
-#' ├── flightLog \cr
-#' ├── imageReport \cr
-#' │   ├── images_l0.csv \cr
-#' │   ├── images_noGPS.csv \cr
-#' │   └── images_taxi.csv \cr
-#' ├── images \cr
-#' └── trashcan \cr
-#' ├── noGPS \cr
-#' └── taxi \cr
-#'Currently doesn't move any files
 #'
 #' @author Marvin Ludwig
 #'
@@ -31,7 +19,7 @@
 
 
 
-raw2L0 <- function(pathRAW,  taxi_threshold = c(3,5)){
+raw2L0 <- function(pathRAW,  taxi_threshold = NULL){
 
   library(exifr)
   library(sf)
@@ -40,7 +28,7 @@ raw2L0 <- function(pathRAW,  taxi_threshold = c(3,5)){
   # read input
   #-------------------------------------------
 
-  initL0(paste0(pathRAW, "/l0"))
+  #initL0(paste0(pathRAW, "/l0"))
 
   img_exif <- exifr::read_exif(pathRAW, recursive = TRUE, tags = c("SourceFile", "Directory", "FileName", "DateTimeOriginal",
                                                             "GPSLongitude", "GPSLatitude", "GPSAltitude"))
@@ -73,7 +61,7 @@ raw2L0 <- function(pathRAW,  taxi_threshold = c(3,5)){
 
   # define flight tags based on time differences:
   times <- which(img_exif$timediff >1)
-  img_exif$flight <- length(times)
+  img_exif$flight <- length(times)+1
 
 
   for(g in seq(length(times), 1)){
@@ -82,23 +70,38 @@ raw2L0 <- function(pathRAW,  taxi_threshold = c(3,5)){
 
   }
 
+
+
+
   # divide into taxi and no taxi
   # currently based on distance thresholds!
 
-  taxi <- img_exif[!(img_exif$distdiff > taxi_threshold[1] & img_exif$distdiff < taxi_threshold[2]),]
-  img_exif <- img_exif[(img_exif$distdiff > taxi_threshold[1] & img_exif$distdiff < taxi_threshold[2]),]
+  if(!is.null(taxi_threshold)){
+    taxi <- img_exif[!(img_exif$distdiff > taxi_threshold[1] & img_exif$distdiff < taxi_threshold[2]),]
+    img_exif <- img_exif[(img_exif$distdiff > taxi_threshold[1] & img_exif$distdiff < taxi_threshold[2]),]
+
+
+    #write.csv(noGPS, paste0(pathRAW, "/l0/imageReport/images_noGPS.csv"), row.names = FALSE)
+    #write.csv(taxi, paste0(pathRAW, "/l0/imageReport/images_taxi.csv"), row.names = FALSE)
+    #write.csv(img_exif, paste0(pathRAW, "/l0/imageReport/images_l0.csv"), row.names = FALSE)
+
+    return(list(l0 = img_exif,
+                taxi = taxi,
+                noGPS = noGPS))
+
+  }
+
+
 
 
   # write LOGs
-  write.csv(noGPS, paste0(pathRAW, "/l0/imageReport/images_noGPS.csv"), row.names = FALSE)
-  write.csv(taxi, paste0(pathRAW, "/l0/imageReport/images_taxi.csv"), row.names = FALSE)
-  write.csv(img_exif, paste0(pathRAW, "/l0/imageReport/images_l0.csv"), row.names = FALSE)
+ # write.csv(noGPS, paste0(pathRAW, "/l0/imageReport/images_noGPS.csv"), row.names = FALSE)
+  #write.csv(img_exif, paste0(pathRAW, "/l0/imageReport/images_l0.csv"), row.names = FALSE)
 
   # return
 
 
   return(list(l0 = img_exif,
-              taxi = taxi,
               noGPS = noGPS))
 
 
