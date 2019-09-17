@@ -6,6 +6,9 @@
 #' @param lapseTime time in seconds between the images of a lapse
 #'
 #' @return NULL
+#' 
+#' @import exifr
+#' @import filesstrings
 #'
 #' @details a time laps with 0.5 seconds between images still works with lapseTime = 1
 #'
