@@ -1,7 +1,7 @@
 #' Read Exif from one mission
 #' @description Reads the exif data from all images of a flight and returns them as points
 #'
-#' @param path
+#' @param imgPath directory with the images
 #'
 #' @return sf points of image positions
 #'
@@ -13,10 +13,10 @@
 #' @export
 
 
-taskExif <- function(path){
+imgExif <- function(imgPath){
 
   # read exif data from images with important exif tags
-  img_exif <- exifr::read_exif(path, recursive = TRUE, tags = c("SourceFile", "Directory", "FileName", "DateTimeOriginal",
+  img_exif <- exifr::read_exif(imgPath, recursive = TRUE, tags = c("SourceFile", "Directory", "FileName", "DateTimeOriginal",
                                                                 "GPSLongitude", "GPSLatitude", "GPSAltitude"))
   # remove points with no GPS signal
   img_exif <- img_exif[!is.na(img_exif$GPSLatitude),]

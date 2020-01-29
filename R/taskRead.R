@@ -10,7 +10,7 @@
 #' @export
 #'
 
-readTask <- function(taskfile){
+taskRead <- function(taskfile){
 
   t <- read.table(taskfile, skip = 1, header = FALSE)
   # filter waypoints
