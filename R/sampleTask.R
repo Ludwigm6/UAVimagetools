@@ -24,7 +24,7 @@ sampleTask <- function(task, spacing = 20){
   l = task %>% dplyr::summarise(do_union = FALSE) %>% sf::st_cast("LINESTRING")
 
   # sample regular grid
-  l = sf::st_sample(l, size = as.numeric(round(st_length(l) / spacing)), type = "regular")
+  l = sf::st_sample(l, size = as.numeric(round(sf::st_length(l) / spacing)), type = "regular")
   l = st_cast(l, to = "POINT")
   return(l)
 

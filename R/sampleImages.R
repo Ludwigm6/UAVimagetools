@@ -19,10 +19,8 @@ sampleImages <- function(images, task, spacing = 20){
 
   t = sampleTask(task, spacing)
   s = st_nearest_feature(task, images)
-  s
 
-
-
-
+  img_sample = images[s,]
+  return(img_sample)
 
 }
