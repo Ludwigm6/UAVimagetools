@@ -17,7 +17,7 @@
 imgGrid = function(imgBB, gridsize){
 
   # make sure imgBB is in UTM format
-  imgBB = st_transform(imgBB, epsg = 25832)
+  imgBB = st_transform(imgBB, crs = 25832)
 
   # sample regular grid
   s = sf::st_make_grid(imgBB, cellsize = gridsize, what = "centers")
