@@ -1,32 +1,26 @@
-#' First and last waypoint of the tasks
+#' Read UAV Task
 #'
+#' @description Reads a UAV mavlink flight task and converts to sf points
 #'
+#' @param taskfile filepath of the task
 #'
+#' @author Marvin Ludwig
+#'
+#' @import sf
+#' @export
 #'
 
+readTask <- function(taskfile){
 
-readTasks <- function(path){
-  
-  tasks <- list.files(path, full.names = TRUE)
-  
-  res <- lapply(seq(length(tasks)), function(t){
-    
-    cur <- read.table(tasks[t],
-                      skip = 1, header = FALSE)
-    cur$task <- t
-    # filter waypoints
-    cur <- cur[cur$V9 != 0,]
-    
-    # get first and last waypoint of task area
-    cur <- cur[c(which(cur$V1 == 7), nrow(cur)),]
-    cur$tag <- c("b", "e")
-    return(cur)
-    
-  })
-  res <- do.call(rbind, res)
-  res <- st_as_sf(res, coords = c("V10", "V9", "V11"), dim = "XYZ",crs = 4326)
-  return(res)
+  t <- read.table(taskfile, skip = 1, header = FALSE)
+  # filter waypoints
+  t <- t[t$V9 != 0,]
+
+  # cut of taxi way
+  t <- t[c(which(t$V1 == 7):nrow(t)),]
+
+  t <- sf::st_as_sf(t, coords = c("V10", "V9"), dim = "XY",crs = 4326)
+  return(t)
 }
-
 
 
